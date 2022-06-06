@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface UserService {
 
-    public UserRecord getUser(Integer userId);
+    public UserRecord getUser(Integer id);
 
     public List<UserRecord> getUsers();
 
@@ -16,5 +16,5 @@ public interface UserService {
 
     public UserRecord updateUser(UserRecord userRecord);
 
-    public Boolean deleteUser(Integer userId);
+    public Boolean deleteUser(Integer id);
 }
