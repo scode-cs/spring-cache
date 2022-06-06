@@ -1,28 +1,20 @@
 package com.sdev.cache.service;
 
+import com.sdev.cache.model.UserNameRecord;
 import com.sdev.cache.model.UserRecord;
-import org.springframework.stereotype.Service;
 
-@Service
-public class UserService {
+import java.util.List;
 
-    public UserRecord getUser() {
 
-        return null;
-    }
+public interface UserService {
 
-    public UserRecord saveUser() {
+    public UserRecord getUser(Integer userId);
 
-        return null;
-    }
+    public List<UserRecord> getUsers();
 
-    public UserRecord updateUser() {
+    public UserRecord saveUser(UserNameRecord userName);
 
-        return null;
-    }
+    public UserRecord updateUser(UserRecord userRecord);
 
-    public UserRecord deleteUser() {
-
-        return null;
-    }
+    public Boolean deleteUser(Integer userId);
 }
