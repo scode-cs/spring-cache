@@ -30,31 +30,41 @@ public class UserRepository {
 
 
     public Optional<UserRecord> fetch(Integer id) {
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         log.info("Record (ID - {}) fetched from the Repository!!", id);
-        return users.stream().filter(usr -> id.equals(usr.id())).findFirst();
+        return filterUserById(id);
     }
 
     public UserRecord save(String userName) {
         var userRecord = new UserRecord(users.size(), userName);
         users.add(userRecord);
+        log.info("Record saved at the Repository, Id: {}", userRecord.id());
         return userRecord;
     }
 
     public UserRecord update(UserRecord userRecord) {
-        var status = delete(userRecord.id());
+        var status = deleteUserById(userRecord.id());
         if (Boolean.TRUE.equals(status)) {
             users.add(userRecord);
+            log.info("Record updated at the Repository, Id: {}", userRecord.id());
         }
         return userRecord;
     }
 
     public Boolean delete(Integer id) {
-        var user = fetch(id);
-        if (user.isPresent()) {
-            users.remove(user);
-            return Boolean.TRUE;
-        } else {
-            return Boolean.FALSE;
-        }
+        log.info("Record (ID - {}) fetched from the Repository!!", id);
+        return deleteUserById(id);
+    }
+
+    private Optional<UserRecord> filterUserById(Integer id) {
+        return users.stream().filter(usr -> id.equals(usr.id())).findFirst();
+    }
+
+    private Boolean deleteUserById(Integer id) {
+        return users.removeIf(usr -> id.equals(usr.id()));
     }
 }

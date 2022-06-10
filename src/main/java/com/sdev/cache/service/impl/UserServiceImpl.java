@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @CachePut(cacheNames = "users", key = "#userRecord.id")
+//    @CachePut(cacheNames = "users", key = "#userRecord.id")
     public UserRecord saveUser(UserNameRecord userName) {
         return userRepository.save(userName.name());
     }
