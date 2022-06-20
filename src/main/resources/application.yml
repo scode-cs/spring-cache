@@ -5,6 +5,12 @@ spring:
   application:
     name: spring-cache
 
+  cache:
+    cache-names:
+      - users
+    caffeine:
+      spec: maximumSize=500, expireAfterAccess=30s
+
 springdoc:
   swagger-ui:
     enabled: true
